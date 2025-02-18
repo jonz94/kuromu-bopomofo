@@ -51,9 +51,17 @@ export async function initialize() {
 export async function bopomofoify(input: string) {
   await initialize()
 
-  const words = cut(input, true)
+  const words = cut(input, true) as string[]
 
   // console.log(JSON.stringify(words, null, 2))
 
-  return words.map((word) => lookupTable[word] ?? word).join('')
+  return words
+    .map((word) => {
+      if (word.startsWith('阿')) {
+        return word.replaceAll('阿', 'ㄚ')
+      }
+
+      return lookupTable[word] ?? word
+    })
+    .join('')
 }
