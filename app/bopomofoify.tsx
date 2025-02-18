@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { bopomofoify } from '@/lib/bopomofoify'
 import { description, title } from '@/lib/constant'
-import { Copy } from 'lucide-react'
+import { Copy, LucideLoaderCircle } from 'lucide-react'
 import Image from 'next/image'
 import { useId, useRef, useState } from 'react'
 import { toast } from 'sonner'
@@ -16,11 +16,14 @@ export function Bopomofoify() {
   const idForOutputTextarea = useId()
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [outputValue, setOutputValue] = useState('')
+  const [isProcessing, setIsProcessing] = useState(false)
 
   async function convert() {
     if (!inputRef.current) {
       return
     }
+
+    setIsProcessing(true)
 
     const input = inputRef.current.value
 
@@ -29,6 +32,8 @@ export function Bopomofoify() {
     setOutputValue(output)
 
     toast.success('轉換成功！')
+
+    setIsProcessing(false)
   }
 
   return (
@@ -53,29 +58,40 @@ export function Bopomofoify() {
           <Textarea
             ref={inputRef}
             id={idForInputTextarea}
-            className="border-transparent bg-muted text-lg shadow-none md:min-h-80 md:text-lg"
+            placeholder="在這裡輸入你想要轉換ㄉ文章或句子"
+            className="min-h-40 border-transparent bg-muted text-lg shadow-none md:min-h-80 md:text-lg"
           />
         </div>
 
         <div className="grid place-content-center">
-          <Button onClick={() => convert()} className="h-12">
-            <div>
-              <p>轉換</p>
-              <p className="hidden md:block">👉</p>
-              <p className="block md:hidden">👇</p>
-            </div>
+          <Button onClick={() => convert()} className="h-12" disabled={isProcessing}>
+            {isProcessing ? (
+              <div className="flex flex-col items-center justify-center">
+                <p>轉換中</p>
+                <p>
+                  <LucideLoaderCircle className="animate-spin" size={16} strokeWidth={2} aria-hidden="true" />
+                </p>
+              </div>
+            ) : (
+              <div>
+                <p>轉換</p>
+                <p className="hidden md:block">👉</p>
+                <p className="block md:hidden">👇</p>
+              </div>
+            )}
           </Button>
         </div>
 
         <div className="flex flex-col gap-2 md:w-full">
-          <Label htmlFor={idForOutputTextarea} className="text-base">
+          <Label htmlFor={idForOutputTextarea} className="hidden text-base md:block">
             轉換後
           </Label>
           <Textarea
             id={idForOutputTextarea}
             readOnly
-            className="h-full grow resize-none text-lg md:min-h-80 md:text-lg"
+            className="h-full min-h-40 grow resize-none text-lg md:min-h-80 md:text-lg"
             value={outputValue}
+            placeholder="點擊「轉換」ㄉ按鈕即可開始轉換～"
           />
         </div>
       </div>
