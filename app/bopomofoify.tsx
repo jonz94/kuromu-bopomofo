@@ -37,7 +37,7 @@ export function Bopomofoify() {
   }
 
   return (
-    <div className="mx-0 grid w-full grid-cols-1 gap-y-8 xs:max-w-full sm:mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+    <div className="mx-0 grid w-full grid-cols-1 gap-y-6 xs:max-w-full sm:mx-auto sm:max-w-screen-sm md:max-w-screen-md md:gap-y-8 lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
       <div className="flex flex-col gap-y-2">
         <h1 className="flex flex-col items-center gap-x-2 text-xl font-bold xs:flex-row xs:text-2xl">
           <span>
