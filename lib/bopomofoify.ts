@@ -23,6 +23,7 @@ const lookupTable: Record<string, string> = {
   可愛: '口i',
   做愛: '捉i',
   大便: '答辯',
+  啊: 'ㄚ',
   阿: 'ㄚ',
   喔: 'ㄛ',
   嗎: 'ㄇ',
@@ -53,7 +54,7 @@ export async function bopomofoify(input: string) {
 
   const words = cut(input, true) as string[]
 
-  // console.log(JSON.stringify(words, null, 2))
+  console.log(JSON.stringify(words, null, 2))
 
   return words
     .map((word) => {
