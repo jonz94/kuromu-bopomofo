@@ -4,6 +4,7 @@ const lookupTable: Record<string, string> = {
   是不是: '484',
   還是: '還4',
   是: '4',
+  問我: '問窩',
   我: '窩',
   你: 'ㄋ',
   妳: 'ㄋ',
@@ -40,6 +41,7 @@ export async function initialize() {
 
   await initializeJiebaWASM()
 
+  add_word('紅著眼睛')
   add_word('超可愛')
   add_word('可愛')
   add_word('好在')
