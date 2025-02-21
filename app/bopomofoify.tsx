@@ -7,6 +7,7 @@ import { bopomofoify } from '@/lib/bopomofoify'
 import { description, title } from '@/lib/constant'
 import { Copy, LucideLoaderCircle } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useId, useRef, useState, useTransition } from 'react'
 import { toast } from 'sonner'
 import icon from './icon.png'
@@ -93,8 +94,11 @@ export function Bopomofoify() {
 
       <div className="flex justify-between">
         <Button className="[--primary:0_100_50%]" asChild>
-          <a
+          <Link
             href="https://www.youtube.com/channel/UC2ZWggon1NOT2TGaVUMzY7A"
+            target="_blank"
+            rel="noopener"
+            prefetch={false}
             className="flex items-center justify-center"
           >
             <span>
@@ -106,7 +110,7 @@ export function Bopomofoify() {
               </svg>
             </span>
             <span className="relative -top-px">訂閱庫洛姆</span>
-          </a>
+          </Link>
         </Button>
 
         <Button
