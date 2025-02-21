@@ -7,7 +7,7 @@ import { bopomofoify } from '@/lib/bopomofoify'
 import { description, title } from '@/lib/constant'
 import { Copy, LucideLoaderCircle } from 'lucide-react'
 import Image from 'next/image'
-import { useId, useRef, useState } from 'react'
+import { useId, useRef, useState, useTransition } from 'react'
 import { toast } from 'sonner'
 import icon from './icon.png'
 
@@ -16,24 +16,19 @@ export function Bopomofoify() {
   const idForOutputTextarea = useId()
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [outputValue, setOutputValue] = useState('')
-  const [isProcessing, setIsProcessing] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
   async function convert() {
-    if (!inputRef.current) {
-      return
-    }
+    startTransition(async () => {
+      if (!inputRef.current) {
+        return
+      }
 
-    setIsProcessing(true)
-
-    const input = inputRef.current.value
-
-    const output = await bopomofoify(input)
-
-    setOutputValue(output)
-
-    toast.success('轉換成功！')
-
-    setIsProcessing(false)
+      const input = inputRef.current.value
+      const output = await bopomofoify(input)
+      setOutputValue(output)
+      toast.success('轉換成功！')
+    })
   }
 
   return (
@@ -64,8 +59,8 @@ export function Bopomofoify() {
         </div>
 
         <div className="grid place-content-center">
-          <Button onClick={() => convert()} className="h-12" disabled={isProcessing}>
-            {isProcessing ? (
+          <Button onClick={convert} className="h-12" disabled={isPending}>
+            {isPending ? (
               <div className="flex flex-col items-center justify-center">
                 <p>轉換中</p>
                 <p>
