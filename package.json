@@ -23,8 +23,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jieba-wasm": "^2.2.0",
-    "lucide-react": "^0.475.0",
-    "next": "^15.1.7",
+    "lucide-react": "^0.477.0",
+    "next": "^15.2.1",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -34,19 +34,19 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
-    "@types/bun": "^1.2.3",
+    "@types/bun": "^1.2.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "babel-plugin-react-compiler": "^19.0.0-beta-e1e972c-20250221",
+    "babel-plugin-react-compiler": "^19.0.0-beta-40c6c23-20250301",
     "eslint": "^9.21.0",
-    "eslint-config-next": "^15.1.7",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-e1e972c-20250221",
+    "eslint-config-next": "^15.2.1",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-40c6c23-20250301",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "postcss": "^8.5.3",
-    "prettier": "^3.5.2",
+    "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "prettier-plugin-packagejson": "^2.5.8",
+    "prettier-plugin-packagejson": "^2.5.10",
     "tailwindcss": "^3.4.17",
-    "typescript": "~5.7.3"
+    "typescript": "~5.8.2"
   }
 }
