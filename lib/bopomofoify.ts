@@ -30,6 +30,7 @@ const lookupTable: Record<string, string> = {
   嗎: 'ㄇ',
   欸: 'ㄟ',
   吧: 'ㄅ',
+  耶: 'ㄝ',
 }
 
 let alreadyInitialized = false
