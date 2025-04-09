@@ -3,12 +3,12 @@
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { bopomofoify } from '@/lib/bopomofoify'
+import { bopomofoify, initialize } from '@/lib/bopomofoify'
 import { description, title } from '@/lib/constant'
 import { Copy, LucideLoaderCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useId, useRef, useState, useTransition } from 'react'
+import { startTransition, useEffect, useId, useRef, useState, useTransition } from 'react'
 import { toast } from 'sonner'
 import icon from './icon.png'
 
@@ -17,10 +17,19 @@ export function Bopomofoify() {
   const idForOutputTextarea = useId()
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [outputValue, setOutputValue] = useState('')
-  const [isPending, startTransition] = useTransition()
+  const [isInitialized, setIsInitialized] = useState(false)
+  const [isPendingForConvert, startTransitionForConvert] = useTransition()
+
+  useEffect(() => {
+    startTransition(async () => {
+      await initialize()
+
+      setIsInitialized(true)
+    })
+  }, [])
 
   async function convert() {
-    startTransition(async () => {
+    startTransitionForConvert(async () => {
       if (!inputRef.current) {
         return
       }
@@ -60,8 +69,15 @@ export function Bopomofoify() {
         </div>
 
         <div className="grid place-content-center">
-          <Button onClick={convert} className="h-12" disabled={isPending}>
-            {isPending ? (
+          <Button onClick={convert} className="h-12" disabled={!isInitialized || isPendingForConvert}>
+            {!isInitialized ? (
+              <div className="flex flex-col items-center justify-center">
+                <p>載入中</p>
+                <p>
+                  <LucideLoaderCircle className="animate-spin" size={16} strokeWidth={2} aria-hidden="true" />
+                </p>
+              </div>
+            ) : isPendingForConvert ? (
               <div className="flex flex-col items-center justify-center">
                 <p>轉換中</p>
                 <p>
