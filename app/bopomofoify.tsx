@@ -33,20 +33,20 @@ export function Bopomofoify() {
   }
 
   return (
-    <div className="mx-0 grid w-full grid-cols-1 gap-y-6 xs:max-w-full sm:mx-auto sm:max-w-screen-sm md:max-w-screen-md md:gap-y-8 lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+    <div className="xs:max-w-full mx-0 grid w-full grid-cols-1 gap-y-6 sm:mx-auto sm:max-w-(--breakpoint-sm) md:max-w-(--breakpoint-md) md:gap-y-8 lg:max-w-(--breakpoint-lg) xl:max-w-(--breakpoint-xl) 2xl:max-w-(--breakpoint-2xl)">
       <div className="flex flex-col gap-y-2">
-        <h1 className="flex flex-col items-center gap-x-2 text-xl font-bold xs:flex-row xs:text-2xl">
+        <h1 className="xs:flex-row xs:text-2xl flex flex-col items-center gap-x-2 text-xl font-bold">
           <span>
             <Image alt="logo" src={icon} height={32} />
           </span>
           <span>{title}</span>
         </h1>
-        <h2 className="mx-auto max-w-48 text-balance text-lg text-muted-foreground xs:mx-0 xs:max-w-[unset]">
+        <h2 className="text-muted-foreground xs:mx-0 xs:max-w-[unset] mx-auto max-w-48 text-lg text-balance">
           {description}
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,4rem,1fr]">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_4rem_1fr]">
         <div className="flex w-full flex-col gap-2">
           <Label htmlFor={idForInputTextarea} className="text-base">
             原始文字
@@ -55,7 +55,7 @@ export function Bopomofoify() {
             ref={inputRef}
             id={idForInputTextarea}
             placeholder="在這裡輸入你想要轉換ㄉ文章或句子"
-            className="min-h-40 border-transparent bg-muted text-lg shadow-none md:min-h-80 md:text-lg"
+            className="min-h-40 text-lg shadow-none md:min-h-80 md:text-lg"
           />
         </div>
 
@@ -93,7 +93,7 @@ export function Bopomofoify() {
       </div>
 
       <div className="flex justify-between">
-        <Button className="[--primary:0_100_50%]" asChild>
+        <Button className="bg-[red] hover:bg-[red]/90" asChild>
           <Link
             href="https://www.youtube.com/channel/UC2ZWggon1NOT2TGaVUMzY7A"
             target="_blank"
